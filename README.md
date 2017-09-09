@@ -2,8 +2,10 @@
 Just a repository to store my code so I don't lose it
 
 Machine Learning:
-[a link](https://github.com/RKasinCDRK/PersonalRepo/tree/master/MachineLearning)
- 
+
+[Directory](https://github.com/RKasinCDRK/PersonalRepo/tree/master/MachineLearning)
+[AlphaGo Attempt](https://github.com/RKasinCDRK/PersonalRepo/tree/master/MachineLearning/AlphaGo)
+
  Game Development:
  
  
