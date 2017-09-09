@@ -1,3 +1,8 @@
+'''
+Credit needs to be given where it is due,
+Unfortunately I don't remember where I got this code from
+but credits go to the original creator, not me.
+'''
 import cv2
 import numpy as np
 import win32gui, win32ui, win32con, win32api
