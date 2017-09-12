@@ -3,6 +3,10 @@ import numpy as np
 from collections import Counter
 
 class InteractionAgent():
+    '''
+    Just a random agent so far, hopefully it will soon be a fully functional agent.
+    Feel free to contribute by making changes and adding your name to the credits.
+    '''
     def __init__(self):
         self.width, self.height = pyautogui.size()
         self.addonWidth = 10
