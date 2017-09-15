@@ -12,23 +12,26 @@ class MarioEnv:
     def on_init(self):
         pygame.init()
         self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
+        pygame.key.set_repeat(100, 100)
         self._background = Sprite_config()
         self._running = True
 
     def on_event(self, event):
+        #Check if window was closed.
         if event.type == QUIT:
             self._running = False
-        elif event.type == KEYDOWN:
-            if event.key == K_q:
-                self._running = False
+        #Check what keys are being pressed
+        #And call associated functions.
         keys = pygame.key.get_pressed()
+        if keys[K_q]:
+            self.running = False
         if keys[K_LEFT]:
             pass
-        if keys[K_RIGHT]:
+        elif keys[K_RIGHT]:
             pass
         if keys[K_UP]:
             pass
-        if keys[K_DOWN]:
+        elif keys[K_DOWN]:
             pass
 
     def on_loop(self):
