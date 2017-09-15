@@ -3,11 +3,13 @@ import os
 from Constants import RATIO, BACKGROUND_HEIGHT, BACKGROUND_WIDTH, TILE_SIZE
 
 class Sprite_config:
-    def __init__(self):
-        self.path = os.path.join('/Users/cdalenbrook/Documents/Mario/MarioEnv', '/Users/cdalenbrook/Documents/Mario/Images')
+    def __init__(self, username):
+        if username == 'CD':
+            self.path = os.path.join('/Users/cdalenbrook/Documents/Mario/MarioEnv', '/Users/cdalenbrook/Documents/Mario/Images')
+        elif username == 'RK':
+            self.path = os.path.join('D:\Ramses\Documents\Github\PersonalRepo_CDRK\GameDevelopment\MarioEnv\', 'D:\Ramses\Documents\Github\PersonalRepo_CDRK\GameDevelopment\MarioEnv\Images')
         self.background_config()
         self.ground_config()
-
 
     def background_config(self):
         #loading the background color (blue rectangle)
