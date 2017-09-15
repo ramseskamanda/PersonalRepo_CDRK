@@ -1,16 +1,18 @@
 import pygame
 from pygame.locals import *
 from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from Background import Sprite_config
 
 class MarioEnv:
     def __init__(self):
         self._running = True
-        self._display_surf = None
+        self._screen = None
         self.size = self.width, self.height = SCREEN_WIDTH, SCREEN_HEIGHT
 
     def on_init(self):
         pygame.init()
-        self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+        self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
+        self._background = Sprite_config()
         self._running = True
 
     def on_event(self, event):
@@ -33,7 +35,9 @@ class MarioEnv:
         pass
 
     def on_render(self):
-        pass
+        self._background.show(self._background.background_color, self._screen,coords=(0, 0))
+        self._background.show(self._background.ground_img, self._screen, array=self._background.ground)
+        pygame.display.flip()
 
     def on_cleanup(self):
         pygame.quit()
