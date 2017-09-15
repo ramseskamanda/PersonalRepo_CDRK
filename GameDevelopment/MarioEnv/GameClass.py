@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from Background import Sprite_config
+from Commands import input_handler
 
 class MarioEnv:
     def __init__(self):
@@ -16,23 +17,14 @@ class MarioEnv:
         self._background = Sprite_config()
         self._running = True
 
-    def on_event(self, event):
+    def on_event(self, keys):
         #Check if window was closed.
-        if event.type == QUIT:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                self._running = False
+        if input_handler(keys) == False:
             self._running = False
-        #Check what keys are being pressed
-        #And call associated functions.
-        keys = pygame.key.get_pressed()
-        if keys[K_q]:
-            self.running = False
-        if keys[K_LEFT]:
-            pass
-        elif keys[K_RIGHT]:
-            pass
-        if keys[K_UP]:
-            pass
-        elif keys[K_DOWN]:
-            pass
+
 
     def on_loop(self):
         pass
@@ -50,8 +42,8 @@ class MarioEnv:
             self._running = False
 
         while (self._running):
-            for event in pygame.event.get():
-                self.on_event(event)
+            keys = pygame.key.get_pressed()
+            self.on_event(keys)
             self.on_loop()
             self.on_render()
         self.on_cleanup()
