@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from Background import Sprite_config
+from Background import Basic_config
 from Commands import input_handler
 
 class MarioEnv:
@@ -14,7 +14,7 @@ class MarioEnv:
         pygame.init()
         self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
         pygame.key.set_repeat(100, 100)
-        self._background = Sprite_config()
+        self._background = Basic_config('RK')
         self._running = True
 
     def on_event(self, keys):
@@ -32,6 +32,7 @@ class MarioEnv:
     def on_render(self):
         self._background.show(self._background.background_color, self._screen,coords=(0, 0))
         self._background.show(self._background.ground_img, self._screen, array=self._background.ground)
+        self._background.show(self._background.cloud_img, self._screen, array=self._background.cloud)
         pygame.display.flip()
 
     def on_cleanup(self):

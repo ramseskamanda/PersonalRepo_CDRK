@@ -1,15 +1,23 @@
 import pygame
 import os
-from Constants import RATIO, BACKGROUND_HEIGHT, BACKGROUND_WIDTH, TILE_SIZE
+from Constants import RATIO, BACKGROUND_HEIGHT, BACKGROUND_WIDTH, TILE_SIZE, PATH_CD, PATH_RK
 
-class Sprite_config:
+class Basic_config:
     def __init__(self, username):
         if username == 'CD':
-            self.path = os.path.join('/Users/cdalenbrook/Documents/Mario/MarioEnv', '/Users/cdalenbrook/Documents/Mario/Images')
-        elif username == 'RK':
-            self.path = os.path.join('D:\Ramses\Documents\Github\PersonalRepo_CDRK\GameDevelopment\MarioEnv\', 'D:\Ramses\Documents\Github\PersonalRepo_CDRK\GameDevelopment\MarioEnv\Images')
+            self.path = PATH_CD
+        else:
+            self.path = PATH_RK
         self.background_config()
         self.ground_config()
+        self.clouds_config()
+
+    def show(self, img, screen, array=None, coords=None):
+        if array is not None:
+            for i in array:
+                screen.blit(img, i)
+        else:
+            screen.blit(img, coords)
 
     def background_config(self):
         #loading the background color (blue rectangle)
@@ -25,9 +33,9 @@ class Sprite_config:
             for x in range(0, BACKGROUND_WIDTH, TILE_SIZE):
                 self.ground.append((x, y))
 
-    def show(self, img, screen, array=None, coords=None):
-        if array is not None:
-            for i in array:
-                screen.blit(img, i)
-        else:
-            screen.blit(img, coords)
+    def clouds_config(self):
+       self.cloud_img = pygame.image.load(self.path + '/WalkableClouds.png').convert_alpha()
+       self.cloud_img = pygame.transform.scale(self.cloud_img, (TILE_SIZE, TILE_SIZE))
+       self.cloud = []
+       for x in range(0, BACKGROUND_WIDTH, TILE_SIZE):
+            self.cloud.append((x, 2*TILE_SIZE))
