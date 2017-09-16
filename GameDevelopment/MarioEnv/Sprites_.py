@@ -1,46 +1,39 @@
 import pygame
 from Constants import *
-from Images import clouds, pipes
+from Images import clouds, pipes, bricks, coin, peach
+
 
 class Pipes(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, size):
         super().__init__()
         self.pipes = pipes()
+        self.image = self.pipes[size]
+        self.rect = self.image.get_rect()
 
 class WalkableClouds(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, x, y):
         super().__init__()
-        self.walkable_clouds_config()
-
-    def walkable_clouds_config(self):
-        self.walkable_clouds = pygame.image.load(PATH_RK + '/WalkableClouds.png').convert()
+        self.clouds = clouds()
+        self.image = self.clouds['img']
+        self.rect = self.image.get_rect()
 
 class Bricks(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, counter, x, y):
         super().__init__()
-        self.bricks_config()
-
-    def bricks_config(self):
-        self.bricks_images = []
-        for i in range(1, 6):
-            self.bricks_images.append(pygame.image.load(PATH_RK + '/l0_Bricks{}.png'.format(i)).convert())
+        self.bricks = bricks()
+        self.image = self.bricks[counter]
+        self.rect = self.image.get_rect()
 
 class Coin(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, counter, x, y):
         super().__init__()
-        self.coin_config()
-
-    def coin_config(self):
-        self.coin_images = []
-        for i in range(1,5):
-            self.coin_images.append(pygame.image.load(PATH_RK + '/l0_sprite_coin{}.png'.format(i)).convert())
+        self.coin = coin()
+        self.image = self.coin[0]
+        self.rect = self.image.get_rect()
 
 class Peach(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.peach_config()
-
-    def peach_config(self):
-        self.peach_images = []
-        for i in range(1,3):
-            self.peach_images.append(pygame.image.load(PATH_RK + '/l0_sprite_peach{}.png'.format(i)).convert())
+        self.peach = peach()
+        self.image = self.peach[0]
+        self.rect = self.image.get_rect()
