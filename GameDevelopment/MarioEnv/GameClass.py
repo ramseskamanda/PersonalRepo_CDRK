@@ -14,7 +14,7 @@ class MarioEnv:
         pygame.init()
         self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
         pygame.key.set_repeat(100, 100)
-        self._background = Basic_config('RK')
+        self._background = Basic_config()
         self._running = True
 
     def on_event(self, keys):
@@ -30,9 +30,11 @@ class MarioEnv:
         pass
 
     def on_render(self):
-        self._background.show(self._background.background_color, self._screen,coords=(0, 0))
-        self._background.show(self._background.ground_img, self._screen, array=self._background.ground)
-        self._background.show(self._background.cloud_img, self._screen, array=self._background.cloud)
+        self._background.show(self._background._background, self._screen, coords=(0, 0))
+        self._background.show(self._background._ground['img'], self._screen, array=self._background._ground['array'])
+        self._background.show(self._background._clouds['img'], self._screen, array=self._background._clouds['array_bg'])
+        self._background.show(self._background._clouds['img'], self._screen, array=self._background._clouds['array_w'])
+        self._background.show(self._background._pipes['img'][0], self._screen, array=self._background._pipes['array'])
         pygame.display.flip()
 
     def on_cleanup(self):

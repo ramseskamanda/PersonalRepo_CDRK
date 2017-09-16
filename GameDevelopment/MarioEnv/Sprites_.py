@@ -1,25 +1,24 @@
 import pygame
-from Constants import PATH_CD, PATH_RK
+from Constants import *
+from Images import clouds, pipes
 
 class Pipes(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-
-    def pipes_config(self):
-        self.pipes_images = []
-        for i in range(1, 8):
-            self.pipes_images.append(pygame.image.load(PATH_RK + '/l0_Pipes{}.png'.format(i)).convert())
+        self.pipes = pipes()
 
 class WalkableClouds(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        self.walkable_clouds_config()
 
-    def walkable_clouds_cofig(self):
+    def walkable_clouds_config(self):
         self.walkable_clouds = pygame.image.load(PATH_RK + '/WalkableClouds.png').convert()
 
 class Bricks(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        self.bricks_config()
 
     def bricks_config(self):
         self.bricks_images = []
@@ -28,16 +27,18 @@ class Bricks(pygame.sprite.Sprite):
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
-        super().__init__():
+        super().__init__()
+        self.coin_config()
 
-    def coin_cofig(self):
+    def coin_config(self):
         self.coin_images = []
         for i in range(1,5):
             self.coin_images.append(pygame.image.load(PATH_RK + '/l0_sprite_coin{}.png'.format(i)).convert())
 
 class Peach(pygame.sprite.Sprite):
     def __init__(self):
-        super().__init__():
+        super().__init__()
+        self.peach_config()
 
     def peach_config(self):
         self.peach_images = []
