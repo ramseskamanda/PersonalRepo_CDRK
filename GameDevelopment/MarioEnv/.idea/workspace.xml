@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="652b5e93-f091-402e-9067-a363ff7f1cb7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Background.py" afterPath="$PROJECT_DIR$/Background.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameClass.py" afterPath="$PROJECT_DIR$/GameClass.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images.py" afterPath="$PROJECT_DIR$/Images.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Images/l0_sprite_flower1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Images/l0_sprite_mushroom1.png" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
