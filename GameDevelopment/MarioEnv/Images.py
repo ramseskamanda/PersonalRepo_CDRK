@@ -48,24 +48,29 @@ def pipes():
 
 def bricks():
     IMG = [pygame.image.load(PATH + '/l0_Bricks{}.png'.format(i)).convert() for i in range(1, 6)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
     return IMG
 
 
 def coin():
     IMG = [pygame.image.load(PATH + '/l0_sprite_coin{}.png'.format(i)).convert_alpha() for i in range(1, 5)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
     return IMG
 
 
 def peach():
     IMG = [pygame.image.load(PATH + '/l0_sprite_peach{}.png'.format(i)).convert_alpha() for i in range(1, 3)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, 2*TILE_SIZE)) for img in IMG]
     return IMG
 
 
 def bowser():
     IMG = [pygame.image.load(PATH + 'l0_Bowser{}'.format(i)).convert_alpha() for i in range(1, 7)]
+    IMG = [pygame.transform.scale(img, (2*TILE_SIZE, 2*TILE_SIZE)) for img in IMG]
     return IMG
 
 
 def mario():
     IMG = [pygame.image.load(PATH + 'l0_sprite_smallmario{}'.format(i)).convert_alpha() for i in range(1, 7)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
     return IMG

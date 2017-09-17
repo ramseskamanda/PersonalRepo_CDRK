@@ -7,3 +7,7 @@ class Character(pygame.sprite.Sprite):
         self.mario = mario()
         self.image = self.mario[0]
         self.rect = self.image.get_rect()
+
+    def update(self):
+        #Override of the update function for Mario Character
+        pass
