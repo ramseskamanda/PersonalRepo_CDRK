@@ -1,7 +1,7 @@
 import pygame
 import os
 from Constants import *
-from Images import background, ground, clouds, pipes
+from Images import background, ground, clouds, pipes, castle
 
 class Basic_config:
     def __init__(self):
@@ -9,6 +9,7 @@ class Basic_config:
         self._ground = ground()
         self._clouds = clouds()
         self._pipes = pipes()
+        self._castle = castle()
 
     def show(self, img, screen, array=None, coords=None):
         if array is not None:

@@ -21,7 +21,10 @@ def ground():
 
 def castle():
     IMG = [pygame.image.load(PATH + '/Castle{}.png'.format(i)).convert_alpha() for i in range(1, 3)]
-    CASTLE = []
+    IMG_SIZE = int(IMG[0].get_size()[1]/16*TILE_SIZE)
+    IMG = [pygame.transform.scale(img, (IMG_SIZE, IMG_SIZE)) for img in IMG]
+    CASTLE = [10*TILE_SIZE, BACKGROUND_HEIGHT-8*TILE_SIZE]
+    return {'img' : IMG, 'coords': CASTLE}
 
 
 def clouds():

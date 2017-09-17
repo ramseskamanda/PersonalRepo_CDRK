@@ -31,6 +31,7 @@ class MarioEnv:
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))
+        self._background.show(self._background._castle['img'][0], self._screen, coords=self._background._castle['coords'])
         self._background.show(self._background._ground['img'], self._screen, array=self._background._ground['array'])
         self._background.show(self._background._clouds['img'], self._screen, array=self._background._clouds['array_bg'])
         self._background.show(self._background._clouds['img'], self._screen, array=self._background._clouds['array_w'])
