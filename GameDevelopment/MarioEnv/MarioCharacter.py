@@ -27,9 +27,3 @@ class Character(pygame.sprite.Sprite):
             self.image = self._mario[self._direction][self.iterator.__next__()]
         elif self._action is 'Jumping':
             self.image = self._mario[self._direction][3]
-
-
-    def action_handler(self):
-        if self._state is not None:
-            #Take an action and pass resulting image in self.image
-            pass
