@@ -18,14 +18,15 @@ class Character(pygame.sprite.Sprite):
         #Override of the update function for Mario Character
         self.rect.x += event[0]
         self.rect.y += event[1]
-        self._action = event[3]
-        if event[0] != 0 or event[1] != 0:
-            if self._action is not None:
-                self.action_handler()
-            else:
-                self.image = self._mario[self._direction][self.iterator.__next__()]
-        else:
+        self._action = event[2]
+        if self._action is None:
             self.image = self._mario[self._direction][0]
+        elif self._action is 'Walking':
+            self.image = self._mario[self._direction][self.iterator.__next__()]
+        elif self._action is 'Jumping':
+            self.image = self._mario[self._direction][3]
+
+
     def action_handler(self):
         if self._state is not None:
             #Take an action and pass resulting image in self.image

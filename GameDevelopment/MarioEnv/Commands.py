@@ -1,15 +1,25 @@
 from pygame.locals import *
+from Constants import VELOCITY
 
 # Check what keys are being pressed
 # And call associated functions.
-def input_handler(keys):
-    if keys[K_q]:
+def input_handler(keys, character):
+    event = [0, 0, None]
+    if keys[K_q] or keys[K_ESCAPE]:
         return False
     if keys[K_LEFT]:
-        pass
+        event[0] = -VELOCITY
+        event[2] = 'Walking'
+        character._direction = 'Left'
+
     elif keys[K_RIGHT]:
-        pass
+        event[0] = VELOCITY
+        event[2] = 'Walking'
+        character._direction = 'Right'
     if keys[K_UP]:
-        pass
+        event[1] = -VELOCITY
+        event[2] = 'Jumping'
     elif keys[K_DOWN]:
-        pass
+        event[2] = 'Crouching'
+
+    character.update(event)

@@ -3,7 +3,7 @@ from Constants import *
 from Images import clouds, pipes, bricks, coin, peach
 
 def Sprite_init():
-    p = 0
+    p = pygame.sprite.Group(Pipes(3, (0, 0)), Pipes(2, (10, 0)))
     wc = 0
     b = 0
     c = 0
@@ -16,8 +16,8 @@ class Pipes(pygame.sprite.Sprite):
         self.pipes = pipes()
         self.image = self.pipes[size]
         self.rect = self.image.get_rect()
-        self.rect.x = position(0)
-        self.rect.y = position(1)
+        self.rect.x = position[0]
+        self.rect.y = position[1]
 
 class WalkableClouds(pygame.sprite.Sprite):
     def __init__(self, position):
@@ -25,8 +25,8 @@ class WalkableClouds(pygame.sprite.Sprite):
         self.clouds = clouds()
         self.image = self.clouds['img']
         self.rect = self.image.get_rect()
-        self.rect.x = position(0)
-        self.rect.y = position(1)
+        self.rect.x = position[0]
+        self.rect.y = position[1]
 
 
 class Bricks(pygame.sprite.Sprite):
@@ -35,8 +35,8 @@ class Bricks(pygame.sprite.Sprite):
         self.bricks = bricks()
         self.image = self.bricks[counter]
         self.rect = self.image.get_rect()
-        self.rect.x = position(0)
-        self.rect.y = position(1)
+        self.rect.x = position[0]
+        self.rect.y = position[1]
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self, counter, position):
@@ -44,8 +44,8 @@ class Coin(pygame.sprite.Sprite):
         self.coin = coin()
         self.image = self.coin[0]
         self.rect = self.image.get_rect()
-        self.rect.x = position(0)
-        self.rect.y = position(1)
+        self.rect.x = position[0]
+        self.rect.y = position[1]
 
 class Peach(pygame.sprite.Sprite):
     def __init__(self):

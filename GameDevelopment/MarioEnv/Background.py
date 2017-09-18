@@ -8,7 +8,6 @@ class Basic_config:
         self._background = background()
         self._ground = ground()
         self._clouds = clouds()
-        self._pipes = pipes()
         self._castle = castle()
 
     def show(self, img, screen, array=None, coords=None):

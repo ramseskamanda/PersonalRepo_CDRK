@@ -4,6 +4,7 @@ from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from Background import Basic_config
 from Commands import input_handler
 from MarioCharacter import Character
+from time import sleep
 
 class MarioEnv:
     def __init__(self):
@@ -15,8 +16,10 @@ class MarioEnv:
         pygame.init()
         self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
         pygame.key.set_repeat(100, 100)
+        self.clock = pygame.time.Clock()
         self._background = Basic_config()
-        self.mario = pygame.sprite.Group(Character())
+        self.char = Character()
+        self.mario = pygame.sprite.Group(self.char)
         self._running = True
 
     def on_event(self, keys):
@@ -24,7 +27,7 @@ class MarioEnv:
         for event in pygame.event.get():
             if event.type == QUIT:
                 self._running = False
-        if input_handler(keys) == False:
+        if input_handler(keys, self.char) == False:
             self._running = False
 
 
