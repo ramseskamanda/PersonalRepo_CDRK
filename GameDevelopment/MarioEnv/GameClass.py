@@ -3,6 +3,7 @@ from pygame.locals import *
 from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from Background import Basic_config
 from Commands import input_handler
+from MarioCharacter import Character
 
 class MarioEnv:
     def __init__(self):
@@ -15,6 +16,7 @@ class MarioEnv:
         self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
         pygame.key.set_repeat(100, 100)
         self._background = Basic_config()
+        self.mario = pygame.sprite.Group(Character())
         self._running = True
 
     def on_event(self, keys):
@@ -31,11 +33,8 @@ class MarioEnv:
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))
-        self._background.show(self._background._castle['img'][0], self._screen, coords=self._background._castle['coords'])
         self._background.show(self._background._ground['img'], self._screen, array=self._background._ground['array'])
-        self._background.show(self._background._clouds['img'], self._screen, array=self._background._clouds['array_bg'])
-        self._background.show(self._background._clouds['img'], self._screen, array=self._background._clouds['array_w'])
-        self._background.show(self._background._pipes['img'][0], self._screen, array=self._background._pipes['array'])
+        self.mario.draw(self._screen)
         pygame.display.flip()
 
     def on_cleanup(self):
