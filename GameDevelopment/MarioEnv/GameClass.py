@@ -34,7 +34,7 @@ class MarioEnv:
 
 
     def on_loop(self):
-        #TO DO: MAKE AN UPDATE FUNCTION THAT MOVES ALL THE SPRITES ACCORDING TO CAMERA MOVEMENTS
+        #TO DO: MAKE AN UPDATE FUNCTION THAT MOVES ACCORDING TO CAMERA MOVEMENTS
         self._sprites_array.update()
 
     def on_render(self):

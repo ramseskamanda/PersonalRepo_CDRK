@@ -19,7 +19,7 @@ class _Sprites:
 
     def update(self): #TO DO: Deal with camera movements and add parameters: x_change
         self.ALL_SPRITES.update()
-
+        #TO DO: Implement update functions for all types of sprites
     def draw(self, screen):
         self.ALL_SPRITES.draw(screen)
 
