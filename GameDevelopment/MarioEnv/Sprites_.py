@@ -1,15 +1,13 @@
 import pygame
+from itertools import cycle
 from Constants import *
 from Images import clouds, pipes, bricks, coin, peach
 
 def Sprite_init():
+    bricks_counter = cycle(range(5))
     p = pygame.sprite.Group(Pipes(3, (0, 0)), Pipes(2, (10, 0)))
-    wc = 0
-    b = 0
-    c = 0
-    ALL_SPRITES = pygame.sprite.Group(p, wc, b, c, Peach())
-
-
+    wc = pygame.sprite.Group(WalkableClouds((0, 0)), WalkableClouds((10, 0)))
+    b = pygame.sprite.Group(Bricks(bricks_counter.__next__(), position=pos) for pos in BRICK_POSITIONS)
 class Pipes(pygame.sprite.Sprite):
     def __init__(self, size, position):
         super().__init__()
