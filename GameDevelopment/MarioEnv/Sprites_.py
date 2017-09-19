@@ -5,9 +5,15 @@ from Images import clouds, pipes, bricks, coin, peach
 
 def Sprite_init():
     bricks_counter = cycle(range(5))
-    p = pygame.sprite.Group(Pipes(3, (0, 0)), Pipes(2, (10, 0)))
-    wc = pygame.sprite.Group(WalkableClouds((0, 0)), WalkableClouds((10, 0)))
-    b = pygame.sprite.Group(Bricks(bricks_counter.__next__(), position=pos) for pos in BRICK_POSITIONS)
+    coin_counter = cycle(range(4))
+    p = pygame.sprite.Group(Pipes(size=size, position=pos) for size, pos in PIPES_POSITION)
+    wc = pygame.sprite.Group(WalkableClouds(position=pos) for pos in CLOUD_POSITIONS)
+    b = pygame.sprite.Group(Bricks(counter=bricks_counter.__next__(), position=pos) for pos in BRICK_POSITIONS)
+    c = pygame.sprite.Group(Coin(coin_counter.__next__(), position=pos) for pos in COIN_POSITIONS)
+    ALL_SPRITES = pygame.sprite.Group(p, wc, b, c)
+    return ALL_SPRITES
+
+
 class Pipes(pygame.sprite.Sprite):
     def __init__(self, size, position):
         super().__init__()
