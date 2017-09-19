@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from Background import Basic_config
-from Sprites_ import Sprite_init
+from Sprites_ import _Sprites
 from Commands import input_handler
 from MarioCharacter import Character
 from time import sleep
@@ -19,7 +19,7 @@ class MarioEnv:
         pygame.key.set_repeat(100, 100)
         self.clock = pygame.time.Clock()
         self._background = Basic_config()
-        self._sprites_array = Sprite_init()
+        self._sprites_array = _Sprites()
         self.char = Character()
         self.mario = pygame.sprite.Group(self.char)
         self._running = True
