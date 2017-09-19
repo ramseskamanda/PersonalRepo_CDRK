@@ -1,7 +1,7 @@
 import pygame
 from itertools import cycle
 from Constants import *
-from Images import clouds, pipes, bricks, coin, peach
+from Images import clouds, pipes, bricks, coin, peach, stairs
 
 def Sprite_init():
     bricks_counter = cycle(range(5))
@@ -13,15 +13,18 @@ def Sprite_init():
     ALL_SPRITES = pygame.sprite.Group(p, wc, b, c)
     return ALL_SPRITES
 
-
+class _Sprites(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        #TO DO: Implement wrapper class for all sprites
 class Pipes(pygame.sprite.Sprite):
     def __init__(self, size, position):
         super().__init__()
         self.pipes = pipes()
         self.image = self.pipes[size]
         self.rect = self.image.get_rect()
-        self.rect.x = position[0]
-        self.rect.y = position[1]
+        self.rect.x, self.rect.y = position
+
 
 class WalkableClouds(pygame.sprite.Sprite):
     def __init__(self, position):
@@ -29,8 +32,7 @@ class WalkableClouds(pygame.sprite.Sprite):
         self.clouds = clouds()
         self.image = self.clouds['img']
         self.rect = self.image.get_rect()
-        self.rect.x = position[0]
-        self.rect.y = position[1]
+        self.rect.x, self.rect.y = position
 
 
 class Bricks(pygame.sprite.Sprite):
@@ -39,8 +41,16 @@ class Bricks(pygame.sprite.Sprite):
         self.bricks = bricks()
         self.image = self.bricks[counter]
         self.rect = self.image.get_rect()
-        self.rect.x = position[0]
-        self.rect.y = position[1]
+        self.rect.x, self.rect.y = position
+
+
+class Stairs(pygame.sprite.Sprite):
+    def __init__(self, position):
+        super().__init__()
+        self.image = stairs()
+        self.rect = self.image.get_rect()
+        self.rect.x, self.rect.y = position
+
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self, counter, position):
@@ -48,8 +58,7 @@ class Coin(pygame.sprite.Sprite):
         self.coin = coin()
         self.image = self.coin[0]
         self.rect = self.image.get_rect()
-        self.rect.x = position[0]
-        self.rect.y = position[1]
+        self.rect.x, self.rect.y = position
 
 class Peach(pygame.sprite.Sprite):
     def __init__(self):

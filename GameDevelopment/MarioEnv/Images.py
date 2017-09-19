@@ -51,6 +51,11 @@ def bricks():
     IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
     return IMG
 
+def stairs():
+    IMG = pygame.image.load(PATH + '/Stairs.png').convert()
+    IMG = pygame.transform.scale(IMG, (TILE_SIZE, TILE_SIZE))
+    return IMG
+
 
 def coin():
     IMG = [pygame.image.load(PATH + '/l0_sprite_coin{}.png'.format(i)).convert_alpha() for i in range(1, 5)]
