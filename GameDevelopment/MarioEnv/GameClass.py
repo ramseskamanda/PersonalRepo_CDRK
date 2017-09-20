@@ -35,7 +35,7 @@ class MarioEnv:
 
     def on_loop(self):
         #TO DO: MAKE AN UPDATE FUNCTION THAT MOVES ACCORDING TO CAMERA MOVEMENTS
-        self._sprites_array.update()
+        self._sprites_array.update(1)
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))

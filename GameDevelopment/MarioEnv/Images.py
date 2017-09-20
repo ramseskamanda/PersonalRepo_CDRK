@@ -46,10 +46,17 @@ def pipes():
     return {'img' : IMG, 'array' : PIPES}
 
 
-def bricks():
+def bricks(): #TO DO: Figure out how to make them break (graphics wise like how it looks when they break)
     IMG = [pygame.image.load(PATH + '/l0_Bricks{}.png'.format(i)).convert() for i in range(1, 6)]
     IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
     return IMG
+
+
+def mystery_blocks():
+    IMG = [pygame.image.load(PATH + '/l0_sprite_{}.png'.format(i)).convert() for i in range(1, 4)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
+    return IMG
+
 
 def stairs():
     IMG = pygame.image.load(PATH + '/Stairs.png').convert()
@@ -69,10 +76,25 @@ def peach():
     return IMG
 
 
+def goombas():
+    IMG = [pygame.image.load(PATH + '/l0_goomba{}.png'.format(i)).convert_alpha() for i in range(1, 4)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
+    return IMG
+
+
+def skeletons():
+    #TO DO: Make a daying image of the skeletoooons
+    IMG = [pygame.image.load(PATH + '/l0_sprite_skeleton{}.png'.format(i)).convert_alpha() for i in range(1, 3)]
+    IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
+    return IMG
+
+
 def bowser():
     IMG = [pygame.image.load(PATH + '\l0_Bowser{}.png'.format(i)).convert_alpha() for i in range(1, 7)]
     IMG = [pygame.transform.scale(img, (2*TILE_SIZE, 2*TILE_SIZE)) for img in IMG]
-    return IMG
+    FLAME = [pygame.image.load(PATH + '\l0_flame{}.png'.format(i)).convert_alpha() for i in range(1, 3)]
+    FLAME = [pygame.transform.scale(img, (2*TILE_SIZE, TILE_SIZE)) for img in FLAME]
+    return IMG, FLAME
 
 
 def mario():
