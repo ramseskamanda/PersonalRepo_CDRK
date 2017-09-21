@@ -35,13 +35,10 @@ class MarioEnv:
 
 
     def on_loop(self):
-        self.camera.scroll([self._background._background, self._background._ground['img']])
-        #TO DO: Modify ground to be a sprite not a background image
         self._sprites_array.update(self.camera.angle[0])
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))
-        self._background.show(self._background._ground['img'], self._screen, array=self._background._ground['array'])
         self._sprites_array.draw(self._screen)
         self.mario.draw(self._screen)
         pygame.display.flip()

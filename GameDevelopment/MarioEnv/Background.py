@@ -1,12 +1,11 @@
 import pygame
 import os
 from Constants import *
-from Images import background, ground, clouds, pipes, castle
+from Images import background, clouds, pipes, castle
 
 class Basic_config:
     def __init__(self):
         self._background = background()
-        self._ground = ground()
         self._clouds = clouds()
         self._castle = castle()
 

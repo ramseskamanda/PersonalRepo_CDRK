@@ -10,7 +10,7 @@ class Character(pygame.sprite.Sprite):
         self.image = self._mario['Right'][0]
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = STARTING_POSITION
-        self._state = 'Standing' #None means no special power-ups
+        self._state = 'Standing'
         self._direction = 'Right'
         self.iterator = cycle(range(1, 3))
 

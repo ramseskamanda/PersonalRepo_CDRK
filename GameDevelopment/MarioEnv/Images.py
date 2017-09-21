@@ -12,11 +12,7 @@ def background():
 def ground():
     IMG = pygame.image.load(PATH + '/Ground.png').convert()
     IMG = pygame.transform.scale(IMG, (TILE_SIZE, TILE_SIZE))
-    GROUND = []
-    for y in range(BACKGROUND_HEIGHT - 2 * TILE_SIZE, BACKGROUND_HEIGHT, TILE_SIZE):
-        for x in range(0, BACKGROUND_WIDTH, TILE_SIZE):
-            GROUND.append((x, y))
-    return {'img': IMG, 'array' : GROUND}
+    return IMG
 
 
 def castle():
