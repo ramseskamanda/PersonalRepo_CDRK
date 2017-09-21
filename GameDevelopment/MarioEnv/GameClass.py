@@ -5,7 +5,7 @@ from Background import Basic_config
 from Sprites_ import _Sprites
 from Commands import input_handler
 from MarioCharacter import Character
-from time import sleep
+from camera import Camera
 
 class MarioEnv:
     def __init__(self):
@@ -22,6 +22,7 @@ class MarioEnv:
         self._sprites_array = _Sprites()
         self.char = Character()
         self.mario = pygame.sprite.Group(self.char)
+        self.camera = Camera()
         self._running = True
 
     def on_event(self, keys):
@@ -29,13 +30,14 @@ class MarioEnv:
         for event in pygame.event.get():
             if event.type == QUIT:
                 self._running = False
-        if input_handler(keys, self.char) == False:
+        if input_handler(keys, self.char, self.camera) == False:
             self._running = False
 
 
     def on_loop(self):
-        #TO DO: MAKE AN UPDATE FUNCTION THAT MOVES ACCORDING TO CAMERA MOVEMENTS
-        self._sprites_array.update(1)
+        self.camera.scroll([self._background._background, self._background._ground['img']])
+        #TO DO: Modify ground to be a sprite not a background image
+        self._sprites_array.update(self.camera.angle[0])
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))

@@ -5,7 +5,7 @@ from Constants import VELOCITY, Y_VELOCITY, GRAVITY, STARTING_POSITION
 
 # Check what keys are being pressed
 # And call associated functions.
-def input_handler(keys, character):
+def input_handler(keys, character, camera):
     event = [0, 0, None]
     if keys[K_q] or keys[K_ESCAPE]:
         return False
@@ -28,7 +28,10 @@ def input_handler(keys, character):
             event[2] = 'Jumping'
             character._state = 'Jumping'
     elif keys[K_DOWN]:
-        event[2] = 'Crouching'
+        if character._state is 'Falling' and character.rect.y <= STARTING_POSITION[1]:
+            event[1] = GRAVITY
+        else:
+            event[2] = 'Crouching'
     elif not keys[K_UP]:
         if character.rect.y > STARTING_POSITION[1]:
             event[1] = 0
@@ -38,3 +41,4 @@ def input_handler(keys, character):
             event[1] = GRAVITY
 
     character.update(event)
+    camera.update(event)
