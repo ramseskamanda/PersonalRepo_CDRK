@@ -3,7 +3,7 @@ import os
 from Constants import *
 from Images import background, clouds, pipes, castle
 
-class Basic_config:
+class Basic_config: #TO DO: Make the background a single image or add more background props
     def __init__(self):
         self._background = background()
         self._clouds = clouds()

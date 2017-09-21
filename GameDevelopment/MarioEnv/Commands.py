@@ -41,4 +41,4 @@ def input_handler(keys, character, camera):
             event[1] = GRAVITY
 
     character.update(event)
-    camera.update(event)
+    camera.update(character.rect.x, event)

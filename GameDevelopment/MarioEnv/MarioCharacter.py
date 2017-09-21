@@ -1,6 +1,6 @@
 import pygame
 from Images import mario
-from Constants import STARTING_POSITION, BACKGROUND_HEIGHT, TILE_SIZE, GRAVITY
+from Constants import STARTING_POSITION, BACKGROUND_HEIGHT, TILE_SIZE, BACKGROUND_WIDTH
 from itertools import cycle
 
 class Character(pygame.sprite.Sprite):
@@ -19,6 +19,8 @@ class Character(pygame.sprite.Sprite):
         self.rect.x += event[0]
         self.rect.y -= event[1]
         self._action = event[2]
+        if self.rect.x < 0:
+            self.rect.x = 0
         if self.rect.y < BACKGROUND_HEIGHT - 8*TILE_SIZE:
             self._state = 'Falling'
         if self._action is None:

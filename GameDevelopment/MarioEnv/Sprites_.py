@@ -10,12 +10,11 @@ class _Sprites:
     def Sprite_init(self):
         #TO DO: Add all the missing sprite groups that were defined as class but not inserted below
         bricks_counter = cycle(range(5))
-        coin_counter = cycle(range(4))
         self.pipes = pygame.sprite.Group(Pipes(size=values[0], position=(values[1], values[2])) for values in PIPES_POSITION)
         self.wc = pygame.sprite.Group(WalkableClouds(position=pos) for pos in CLOUD_POSITIONS)
         self.bricks = pygame.sprite.Group(Bricks(counter=bricks_counter.__next__(), position=pos) for pos in BRICK_POSITIONS)
         self.ground = pygame.sprite.Group(Ground(position=pos) for pos in GROUND_POSITIONS)
-        self.coins = pygame.sprite.Group(Coin(coin_counter.__next__(), position=pos) for pos in COIN_POSITIONS)
+        self.coins = pygame.sprite.Group(Coin(position=pos) for pos in COIN_POSITIONS)
         self.stairs = pygame.sprite.Group(Stairs(position=pos) for pos in STAIRS_POSITION)
         self.ALL_SPRITES = pygame.sprite.Group(self.pipes, self.wc, self.bricks, self.coins, self.stairs, self.ground)
 
@@ -98,17 +97,17 @@ class Stairs(pygame.sprite.Sprite):
 
 
 class Coin(pygame.sprite.Sprite):
-    def __init__(self, counter, position):
+    def __init__(self, position):
         super().__init__()
+        self.coin_counter = cycle(range(4))
         self.coin = coin()
         self.image = self.coin[0]
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
-        self.counter = counter
 
     def update(self, x):
         self.rect.x += x
-        self.image = self.coin[self.counter.__next__()] #TO DO: Fix coin counter to only be called once
+        self.image = self.coin[self.coin_counter.__next__()] #TO DO: Fix coin counter to only be called once
 
 class Peach(pygame.sprite.Sprite):
     def __init__(self):
