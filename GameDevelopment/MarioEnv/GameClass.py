@@ -26,7 +26,7 @@ class MarioEnv:
         self._running = True
 
     def on_event(self, keys):
-        #Check if window was closed.
+        self.camera.update(self.char)
         for event in pygame.event.get():
             if event.type == QUIT:
                 self._running = False
@@ -35,12 +35,11 @@ class MarioEnv:
 
 
     def on_loop(self):
-        self.camera.update(self.char)
-        self._sprites_array.update(self.camera)
+        pass #self._sprites_array.update(self.camera)
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))
-        self._sprites_array.draw(self._screen)
+        for s in self._sprites_array.ALL_SPRITES: self._screen.blit(s.image, self.camera.apply(s))
         self.mario.draw(self._screen)
         pygame.display.flip()
 
