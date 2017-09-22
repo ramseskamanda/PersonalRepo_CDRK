@@ -9,7 +9,7 @@ PATH = os.getcwd()
 PATH = os.path.join(PATH, PATH + '\Images')
 
 #SPRITE CONSTANTS
-PIPES_POSITION = [] #[[size, pos_x, pos_y]]
+PIPES_POSITION = [(0, 0, 0)] #[[size, pos_x, pos_y]]
 CLOUD_POSITIONS = []
 GROUND_POSITIONS = [(x, y) for y in range(BACKGROUND_HEIGHT - 2*TILE_SIZE, BACKGROUND_HEIGHT, TILE_SIZE) for x in range(0, BACKGROUND_WIDTH, TILE_SIZE)]
 BRICK_POSITIONS=[]

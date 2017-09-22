@@ -1,11 +1,11 @@
 import pygame
 from pygame.locals import *
-from Constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from Constants import SCREEN_WIDTH, SCREEN_HEIGHT, BACKGROUND_WIDTH, BACKGROUND_HEIGHT
 from Background import Basic_config
 from Sprites_ import _Sprites
 from Commands import input_handler
 from MarioCharacter import Character
-from camera import Camera
+from camera import Camera, complex_camera
 
 class MarioEnv:
     def __init__(self):
@@ -22,7 +22,7 @@ class MarioEnv:
         self._sprites_array = _Sprites()
         self.char = Character()
         self.mario = pygame.sprite.Group(self.char)
-        self.camera = Camera()
+        self.camera = Camera(complex_camera, BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
         self._running = True
 
     def on_event(self, keys):
@@ -35,7 +35,8 @@ class MarioEnv:
 
 
     def on_loop(self):
-        self._sprites_array.update(self.camera.angle[0])
+        self.camera.update(self.char)
+        self._sprites_array.update(self.camera)
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))

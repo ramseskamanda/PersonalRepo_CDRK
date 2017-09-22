@@ -38,8 +38,7 @@ def clouds():
 def pipes():
     IMG = [pygame.image.load(PATH + '/Pipes{}.png'.format(i)).convert_alpha() for i in range(7)]
     IMG = [pygame.transform.scale(img, (TILE_SIZE, (int(img.get_size()[1] / 16))*TILE_SIZE)) for img in IMG]
-    PIPES = [(x, BACKGROUND_HEIGHT - 3 * TILE_SIZE) for x in range(0, BACKGROUND_WIDTH, TILE_SIZE) for img in IMG]
-    return {'img' : IMG, 'array' : PIPES}
+    return IMG
 
 
 def bricks(): #TO DO: Figure out how to make them break (graphics wise like how it looks when they break)

@@ -18,8 +18,8 @@ class _Sprites:
         self.stairs = pygame.sprite.Group(Stairs(position=pos) for pos in STAIRS_POSITION)
         self.ALL_SPRITES = pygame.sprite.Group(self.pipes, self.wc, self.bricks, self.coins, self.stairs, self.ground)
 
-    def update(self, x_change):
-        self.ALL_SPRITES.update(x_change)
+    def update(self, camera):
+        self.ALL_SPRITES.update(camera)
 
     def draw(self, screen):
         self.ALL_SPRITES.draw(screen)
@@ -32,8 +32,8 @@ class Pipes(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x += x
+    def update(self, camera):
+        self.rect = camera.apply(self)
 
 class WalkableClouds(pygame.sprite.Sprite):
     def __init__(self, position):
@@ -43,8 +43,8 @@ class WalkableClouds(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x += x
+    def update(self, camera):
+        self.rect = camera.apply(self)
 
 
 class Ground(pygame.sprite.Sprite):
@@ -55,8 +55,8 @@ class Ground(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x -= x
+    def update(self, camera):
+        self.rect = camera.apply(self)
 
 
 class Bricks(pygame.sprite.Sprite):
@@ -67,8 +67,8 @@ class Bricks(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x += x
+    def update(self, camera):
+        self.rect = camera.apply(self)
 
 
 class Mystery_Blocks(pygame.sprite.Sprite):
@@ -80,8 +80,8 @@ class Mystery_Blocks(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x += x
+    def update(self, camera):
+        self.rect = camera.apply(self)
         self.image = self.blocks[self.counter.__next__()]
 
 
@@ -92,8 +92,8 @@ class Stairs(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x += x
+    def update(self, camera):
+        self.rect = camera.apply(self)
 
 
 class Coin(pygame.sprite.Sprite):
@@ -105,8 +105,8 @@ class Coin(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x):
-        self.rect.x += x
+    def update(self, camera):
+        self.rect = camera.apply(self)
         self.image = self.coin[self.coin_counter.__next__()] #TO DO: Fix coin counter to only be called once
 
 class Peach(pygame.sprite.Sprite):
