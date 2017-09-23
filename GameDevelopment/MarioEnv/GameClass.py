@@ -35,7 +35,7 @@ class MarioEnv:
 
 
     def on_loop(self):
-        pass #self._sprites_array.update(self.camera)
+        self._sprites_array.update(self.camera)
 
     def on_render(self):
         self._background.show(self._background._background, self._screen, coords=(0, 0))
