@@ -18,29 +18,29 @@ class MarioEnv:
         self._screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.FULLSCREEN)
         pygame.key.set_repeat(100, 100)
         self.clock = pygame.time.Clock()
-        self._background = Basic_config()
+        self._background = Basic_config() #TO DO: Delete background creation and instead make simple function to load an already made bg
         self._sprites_array = _Sprites()
-        self.char = Character()
-        self.mario = pygame.sprite.Group(self.char)
+        self.mario = Character()
+        #self.char = pygame.sprite.Group(self.mario)
+        self.ALL_SPRITES = pygame.sprite.Group(self._sprites_array.ENTITIES, self.mario)
         self.camera = Camera(complex_camera, BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
         self._running = True
 
     def on_event(self, keys):
-        self.camera.update(self.char)
         for event in pygame.event.get():
             if event.type == QUIT:
                 self._running = False
-        if input_handler(keys, self.char, self.camera) == False:
+        if input_handler(keys, self.mario) == False:
             self._running = False
 
-
     def on_loop(self):
-        self._sprites_array.update(self.camera)
+        self.camera.update(self.mario)
+        self._sprites_array.update()
 
     def on_render(self):
-        self._background.show(self._background._background, self._screen, coords=(0, 0))
-        for s in self._sprites_array.ALL_SPRITES: self._screen.blit(s.image, self.camera.apply(s))
-        self.mario.draw(self._screen)
+        self._screen.blit(self._background._background, (0, 0))
+        for s in self.ALL_SPRITES: self._screen.blit(s.image, self.camera.apply(s))
+        #self.char.draw(self._screen)
         pygame.display.flip()
 
     def on_cleanup(self):

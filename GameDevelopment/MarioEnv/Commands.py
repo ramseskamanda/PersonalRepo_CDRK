@@ -4,8 +4,8 @@ from pygame.locals import *
 from Constants import VELOCITY, Y_VELOCITY, GRAVITY, STARTING_POSITION
 
 # Check what keys are being pressed
-# And call associated functions.
-def input_handler(keys, character, camera):
+# And return associated values.
+def input_handler(keys, character):
     event = [0, 0, None]
     if keys[K_q] or keys[K_ESCAPE]:
         return False

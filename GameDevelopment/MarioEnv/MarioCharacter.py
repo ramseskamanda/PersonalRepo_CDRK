@@ -12,7 +12,7 @@ class Character(pygame.sprite.Sprite):
         self.rect.x, self.rect.y = STARTING_POSITION
         self._state = 'Standing'
         self._direction = 'Right'
-        self.iterator = cycle(range(1, 3))
+        self.walking_iterator = cycle(range(1, 3))
 
     def update(self, event):
         #Override of the update function for Mario Character
@@ -26,7 +26,7 @@ class Character(pygame.sprite.Sprite):
         if self._action is None:
             self.image = self._mario[self._direction][0]
         elif self._action is 'Walking':
-            self.image = self._mario[self._direction][self.iterator.__next__()]
+            self.image = self._mario[self._direction][self.walking_iterator.__next__()]
         elif self._action is 'Jumping':
             self.image = self._mario[self._direction][3]
         if self._state is 'Falling':
