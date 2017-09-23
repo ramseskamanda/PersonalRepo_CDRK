@@ -5,8 +5,8 @@ from Constants import VELOCITY, Y_VELOCITY, GRAVITY, STARTING_POSITION
 
 # Check what keys are being pressed
 # And return associated values.
-def input_handler(keys, character):
-    event = [0, 0, None]
+def input_handler(keys, character, collideables):
+    event = [0, 0, 'Standing']
     if keys[K_q] or keys[K_ESCAPE]:
         return False
     if keys[K_r]:
@@ -40,4 +40,4 @@ def input_handler(keys, character):
             character._state = 'Falling'
             event[1] = GRAVITY
 
-    character.update(event)
+    character.update(event, collideables)

@@ -21,7 +21,6 @@ class MarioEnv:
         self._background = Basic_config() #TO DO: Delete background creation and instead make simple function to load an already made bg
         self._sprites_array = _Sprites()
         self.mario = Character()
-        #self.char = pygame.sprite.Group(self.mario)
         self.ALL_SPRITES = pygame.sprite.Group(self._sprites_array.ENTITIES, self.mario)
         self.camera = Camera(complex_camera, BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
         self._running = True
@@ -30,17 +29,17 @@ class MarioEnv:
         for event in pygame.event.get():
             if event.type == QUIT:
                 self._running = False
-        if input_handler(keys, self.mario) == False:
+        if input_handler(keys, self.mario, self._sprites_array.COLLIDEABLES) == False:
             self._running = False
 
     def on_loop(self):
+        score_increment = self.mario.collide_breakables(self._sprites_array.BREAKABLES)
         self.camera.update(self.mario)
         self._sprites_array.update()
 
     def on_render(self):
         self._screen.blit(self._background._background, (0, 0))
         for s in self.ALL_SPRITES: self._screen.blit(s.image, self.camera.apply(s))
-        #self.char.draw(self._screen)
         pygame.display.flip()
 
     def on_cleanup(self):

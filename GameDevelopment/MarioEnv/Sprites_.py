@@ -16,7 +16,9 @@ class _Sprites:
         ground = pygame.sprite.Group(Ground(position=pos) for pos in GROUND_POSITIONS)
         coins = pygame.sprite.Group(Coin(position=pos) for pos in COIN_POSITIONS)
         stairs = pygame.sprite.Group(Stairs(position=pos) for pos in STAIRS_POSITION)
-        self.ENTITIES = pygame.sprite.Group(pipes, wc, bricks, coins, stairs, ground)
+        self.BREAKABLES = pygame.sprite.Group(bricks, coins)
+        self.COLLIDEABLES = pygame.sprite.Group(pipes, wc, stairs)
+        self.ENTITIES = pygame.sprite.Group(ground, self.COLLIDEABLES, self.BREAKABLES)
 
     def update(self):
         self.ENTITIES.update()
