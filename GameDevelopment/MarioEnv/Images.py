@@ -36,8 +36,8 @@ def clouds():
 
 
 def pipes():
-    IMG = [pygame.image.load(PATH + '/Pipes{}.png'.format(i)).convert_alpha() for i in range(7)]
-    IMG = [pygame.transform.scale(img, (TILE_SIZE, (int(img.get_size()[1] / 16))*TILE_SIZE)) for img in IMG]
+    IMG = [pygame.image.load(PATH + '/_Pipes{}.png'.format(i)).convert_alpha() for i in range(7)]
+    IMG = [pygame.transform.scale(img, (2*TILE_SIZE, (int(img.get_size()[1] / 16))*TILE_SIZE)) for img in IMG]
     return IMG
 
 

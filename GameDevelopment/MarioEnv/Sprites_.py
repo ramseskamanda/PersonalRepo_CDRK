@@ -20,10 +20,12 @@ class _Sprites:
         self.BREAKABLES = pygame.sprite.Group(bricks, coins)
         self.COLLIDEABLES = pygame.sprite.Group(pipes, wc, stairs)
         self.ENEMIES = pygame.sprite.Group(goombas)
+        self.DECOR = pygame.sprite.Group(ground, self.COLLIDEABLES, self.BREAKABLES)
         self.ENTITIES = pygame.sprite.Group(ground, self.COLLIDEABLES, self.BREAKABLES, self.ENEMIES)
 
-    def update(self, player):
-        self.ENTITIES.update(player)
+    def update(self):
+        self.DECOR.update()
+        self.ENEMIES.update(self.DECOR)
 
 class Pipes(pygame.sprite.Sprite):
     def __init__(self, size, position):
@@ -102,13 +104,9 @@ class Peach(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = PEACH_POS
 
-    def update(self, player):
+    def update(self):
         pass
         #TO DO: Make an update function for peach's movements
-
-'''
-SEPARATION: BELOW SPRITES NEED TO BE ADDED TO THE SPRITES ARRAY AND MODIFIED.
-'''
 
 class Goombas(pygame.sprite.Sprite):
     def __init__(self, position):
@@ -118,15 +116,23 @@ class Goombas(pygame.sprite.Sprite):
         self.image = self.goombas[0]
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
+        self.vel = GOOMBA_SPEED
 
-    def update(self, player): #TO DO: Figure out collision detection with goombas
-        #self.collision(player, entities)
-        self.rect.x += GOOMBA_SPEED
+    def update(self, entities): #TO DO: Figure out collision detection with goombas
+        if self.collision(entities):
+            self.vel *= -1
+        self.rect.x += self.vel
         self.image = self.goombas[self.counter.__next__()]
 
-    def collision(self, player, entities):
-        pass
+    def collision(self, entities):
+        if len(pygame.sprite.spritecollide(self, entities, False)) > 0:
+            return True
+        elif self.rect.x < 0:
+            return True
 
+'''
+SEPARATION: BELOW SPRITES NEED TO BE ADDED TO THE SPRITES ARRAY AND MODIFIED.
+'''
 
 class Skeletons(pygame.sprite.Sprite):
     def __init__(self, position):
