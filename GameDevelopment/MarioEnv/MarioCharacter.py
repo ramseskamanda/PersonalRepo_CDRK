@@ -30,7 +30,9 @@ class Character(pygame.sprite.Sprite):
         self.rect.y += self.y_vel
         self.onGround = False
         self.move(0, self.y_vel, collideables)
-        self._action = event[2]
+        self._state = event[2]
+        self.find_image()
+        
         
 
     def move(self, dx, dy, collideables):
@@ -54,12 +56,19 @@ class Character(pygame.sprite.Sprite):
                 if dy < 0: # Moving up; Hit the bottom side of the wall
                     self.rect.top = c.rect.bottom
 
+    def find_image(self):
+        if self._state is 'Standing':
+            self.image = self._mario[self._direction][0]
+        if self._state is 'Walking':
+            self.image = self._mario[self._direction][self.walking_iterator.__next__()]
+        if self._state is 'Jumping':
+            self.image = self._mario[self._direction][3]
+        if self._state is 'Crouching':
+            pass
+
     def collide_breakables(self, breakables):
         break_list = pygame.sprite.spritecollide(self, breakables, True)
         return break_list
-
-
-
 
 
 

@@ -16,12 +16,14 @@ class _Sprites:
         ground = pygame.sprite.Group(Ground(position=pos) for pos in GROUND_POSITIONS)
         coins = pygame.sprite.Group(Coin(position=pos) for pos in COIN_POSITIONS)
         stairs = pygame.sprite.Group(Stairs(position=pos) for pos in STAIRS_POSITION)
+        goombas = pygame.sprite.Group(Goombas(position=pos) for pos in GOOMBAS_POSITION)
         self.BREAKABLES = pygame.sprite.Group(bricks, coins)
         self.COLLIDEABLES = pygame.sprite.Group(pipes, wc, stairs)
-        self.ENTITIES = pygame.sprite.Group(ground, self.COLLIDEABLES, self.BREAKABLES)
+        self.ENEMIES = pygame.sprite.Group(goombas)
+        self.ENTITIES = pygame.sprite.Group(ground, self.COLLIDEABLES, self.BREAKABLES, self.ENEMIES)
 
-    def update(self):
-        self.ENTITIES.update()
+    def update(self, player):
+        self.ENTITIES.update(player)
 
 class Pipes(pygame.sprite.Sprite):
     def __init__(self, size, position):
@@ -90,7 +92,7 @@ class Coin(pygame.sprite.Sprite):
         self.rect.x, self.rect.y = position
 
     def update(self):
-        self.image = self.coin[self.coin_counter.__next__()] #TO DO: Fix coin counter to only be called once
+        self.image = self.coin[self.coin_counter.__next__()] 
 
 class Peach(pygame.sprite.Sprite):
     def __init__(self):
@@ -100,7 +102,7 @@ class Peach(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = PEACH_POS
 
-    def update(self):
+    def update(self, player):
         pass
         #TO DO: Make an update function for peach's movements
 
@@ -117,9 +119,13 @@ class Goombas(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position
 
-    def update(self, x): #TO DO: Figure out collision detection with goombas
+    def update(self, player): #TO DO: Figure out collision detection with goombas
+        #self.collision(player, entities)
         self.rect.x += GOOMBA_SPEED
         self.image = self.goombas[self.counter.__next__()]
+
+    def collision(self, player, entities):
+        pass
 
 
 class Skeletons(pygame.sprite.Sprite):
