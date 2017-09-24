@@ -15,29 +15,16 @@ def input_handler(keys, character, collideables):
         event[0] = -VELOCITY
         event[2] = 'Walking'
         character._direction = 'Left'
-
     elif keys[K_RIGHT]:
         event[0] = VELOCITY
         event[2] = 'Walking'
         character._direction = 'Right'
     if keys[K_UP]:
-        if character._state is 'Falling' and character.rect.y <= STARTING_POSITION[1]:
-            event[1] = GRAVITY
-        else:
-            event[1] = Y_VELOCITY
-            event[2] = 'Jumping'
-            character._state = 'Jumping'
+        event[1] = Y_VELOCITY
+        event[2] = 'Jumping'
+    if not keys[K_UP]:
+        event[1] = 0
     elif keys[K_DOWN]:
-        if character._state is 'Falling' and character.rect.y <= STARTING_POSITION[1]:
-            event[1] = GRAVITY
-        else:
-            event[2] = 'Crouching'
-    elif not keys[K_UP]:
-        if character.rect.y > STARTING_POSITION[1]:
-            event[1] = 0
-            character._state = 'On the ground'
-        else:
-            character._state = 'Falling'
-            event[1] = GRAVITY
+        pass
 
     character.update(event, collideables)
