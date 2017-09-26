@@ -5,12 +5,16 @@ from Background import Basic_config
 from Sprites_ import _Sprites
 from Commands import input_handler
 from MarioCharacter import Character
+from Bowser import Bowser
 from camera import Camera, complex_camera
 
 class MarioEnv:
     def __init__(self):
         self._running = True
         self._screen = None
+        self._reward = None
+        self._observation = None
+        self._info = None
         self.size = self.width, self.height = SCREEN_WIDTH, SCREEN_HEIGHT
 
     def on_init(self):
@@ -21,7 +25,8 @@ class MarioEnv:
         self._background = Basic_config() #TO DO: Delete background creation and instead make simple function to load an already made bg
         self._sprites_array = _Sprites()
         self.mario = Character()
-        self.ALL_SPRITES = pygame.sprite.Group(self._sprites_array.ENTITIES, self.mario)
+        self.bowser = Bowser()
+        self.ALL_SPRITES = pygame.sprite.Group(self._sprites_array.ENTITIES, self.mario, self.bowser, self.bowser.fireballs)
         self.camera = Camera(complex_camera, BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
         self._running = True
 
@@ -33,6 +38,7 @@ class MarioEnv:
             self._running = False
 
     def on_loop(self):
+        self.bowser.update(self.mario.rect.y, self.mario.rect.y)
         score_increment = self.mario.collide_breakables(self._sprites_array.BREAKABLES)
         self.camera.update(self.mario)
         self._sprites_array.update()
