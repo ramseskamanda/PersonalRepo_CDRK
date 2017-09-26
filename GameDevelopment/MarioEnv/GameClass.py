@@ -38,7 +38,7 @@ class MarioEnv:
             self._running = False
 
     def on_loop(self):
-        self.bowser.update(self.mario.rect.y, self.mario.rect.y)
+        self.bowser.update(self.mario.rect.x, self.mario.rect.y)
         score_increment = self.mario.collide_breakables(self._sprites_array.BREAKABLES)
         self.camera.update(self.mario)
         self._sprites_array.update()
