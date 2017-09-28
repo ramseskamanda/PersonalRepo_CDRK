@@ -15,8 +15,9 @@ class Character(pygame.sprite.Sprite):
         self.walking_iterator = cycle(range(1, 3))
         self.x_vel, self.y_vel = (0, 0)
         self.onGround = True
+        self.alive = True
 
-    def update(self, event, collideables):
+    def update(self, event, collideables, enemies):
         #Override of the update function for Mario Character
         self.x_vel = event[0]
         if event[1] > 0 and self.onGround:
@@ -26,16 +27,16 @@ class Character(pygame.sprite.Sprite):
             if self.y_vel > LIMIT:
                 self.y_vel = LIMIT
         self.rect.x += self.x_vel
-        self.move(self.x_vel, 0, collideables)
+        self.move(self.x_vel, 0, collideables, enemies)
         self.rect.y += self.y_vel
         self.onGround = False
-        self.move(0, self.y_vel, collideables)
+        self.move(0, self.y_vel, collideables, enemies)
         self._state = event[2]
         self.find_image()
         
         
 
-    def move(self, dx, dy, collideables):
+    def move(self, dx, dy, collideables, enemies):
         if self.rect.y >= STARTING_POSITION[1] and not self.onGround:
             self.rect.y = STARTING_POSITION[1]
             self.onGround = True
@@ -55,6 +56,12 @@ class Character(pygame.sprite.Sprite):
                     self.y_vel = 0
                 if dy < 0: # Moving up; Hit the bottom side of the wall
                     self.rect.top = c.rect.bottom
+        for e in enemies:
+            if self.rect.colliderect(e.rect):
+                if self.rect.bottom > e.rect.top and e.rect.left < self.rect.right and e.rect.right > self.rect.left:
+                    e.kill()
+                else:
+                    self.alive = False
 
     def find_image(self):
         if self._state is 'Standing':

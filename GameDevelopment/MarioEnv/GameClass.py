@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from itertools import cycle
 from Constants import SCREEN_WIDTH, SCREEN_HEIGHT, BACKGROUND_WIDTH, BACKGROUND_HEIGHT
 from Background import Basic_config
 from Sprites_ import _Sprites
@@ -16,6 +17,7 @@ class MarioEnv:
         self._observation = None
         self._info = None
         self.size = self.width, self.height = SCREEN_WIDTH, SCREEN_HEIGHT
+        self.frame_iterator = cycle(range(600))
 
     def on_init(self):
         pygame.init()
@@ -28,20 +30,22 @@ class MarioEnv:
         self.bowser = Bowser()
         self.ALL_SPRITES = pygame.sprite.Group(self._sprites_array.ENTITIES, self.mario, self.bowser, self.bowser.fireballs)
         self.camera = Camera(complex_camera, BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
-        self._running = True
+        self._running = self.mario.alive
 
     def on_event(self, keys):
         for event in pygame.event.get():
             if event.type == QUIT:
                 self._running = False
-        if input_handler(keys, self.mario, self._sprites_array.COLLIDEABLES) == False:
+        if input_handler(keys, self.mario, self._sprites_array.COLLIDEABLES, self._sprites_array.ENEMIES) == False:
             self._running = False
 
     def on_loop(self):
         self.bowser.update(self.mario.rect.x, self.mario.rect.y)
+        self.bowser.fireballs.update()
         score_increment = self.mario.collide_breakables(self._sprites_array.BREAKABLES)
         self.camera.update(self.mario)
         self._sprites_array.update()
+        self._running = self.mario.alive
 
     def on_render(self):
         self._screen.blit(self._background._background, (0, 0))
@@ -55,9 +59,10 @@ class MarioEnv:
         if self.on_init() == False:
             self._running = False
 
-        while (self._running):
+        while self._running:
             keys = pygame.key.get_pressed()
-            self.on_event(keys)
-            self.on_loop()
-            self.on_render()
+            if self.frame_iterator.__next__() == 0:
+                self.on_event(keys)
+                self.on_loop()
+                self.on_render()
         self.on_cleanup()
