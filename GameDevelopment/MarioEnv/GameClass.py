@@ -41,11 +41,9 @@ class MarioEnv:
 
     def on_loop(self):
         self.bowser.update(self.mario.rect.x, self.mario.rect.y)
-        self.bowser.fireballs.update()
         score_increment = self.mario.collide_breakables(self._sprites_array.BREAKABLES)
         self.camera.update(self.mario)
         self._sprites_array.update()
-        self._running = self.mario.alive
 
     def on_render(self):
         self._screen.blit(self._background._background, (0, 0))
