@@ -2,6 +2,7 @@
   <dictionary name="ramse">
     <words>
       <w>bowser</w>
+      <w>collideables</w>
     </words>
   </dictionary>
 </component>

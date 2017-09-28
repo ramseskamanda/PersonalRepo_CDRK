@@ -58,7 +58,7 @@ class Character(pygame.sprite.Sprite):
                     self.rect.top = c.rect.bottom
         for e in enemies:
             if self.rect.colliderect(e.rect):
-                if self.rect.bottom > e.rect.top and e.rect.left < self.rect.right and e.rect.right > self.rect.left:
+                if self.rect.bottom == e.rect.top: #and e.rect.left < self.rect.right and e.rect.right > self.rect.left:
                     e.kill()
                 else:
                     self.alive = False
