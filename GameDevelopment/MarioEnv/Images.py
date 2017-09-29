@@ -85,14 +85,14 @@ def skeletons():
 
 
 def bowser():
-    IMG = [pygame.image.load(PATH + '\l0_Bowser{}.png'.format(i)).convert_alpha() for i in range(1, 7)]
+    IMG = [pygame.image.load(PATH + '/l0_Bowser{}.png'.format(i)).convert_alpha() for i in range(1, 7)]
     IMG = [pygame.transform.scale(img, (2*TILE_SIZE, 2*TILE_SIZE)) for img in IMG]
-    FLAME = [pygame.image.load(PATH + '\l0_flame{}.png'.format(i)).convert_alpha() for i in range(1, 3)]
+    FLAME = [pygame.image.load(PATH + '/l0_flame{}.png'.format(i)).convert_alpha() for i in range(1, 3)]
     FLAME = [pygame.transform.scale(img, (2*TILE_SIZE, TILE_SIZE)) for img in FLAME]
     return IMG, FLAME
 
 
 def mario():
-    IMG = [pygame.image.load(PATH + '\l0_sprite_smallmario{}.png'.format(i)).convert_alpha() for i in range(1, 10)]
+    IMG = [pygame.image.load(PATH + '/l0_sprite_smallmario{}.png'.format(i)).convert_alpha() for i in range(1, 10)]
     IMG = [pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE)) for img in IMG]
     return {'Right' : [IMG[0], IMG[4], IMG[5], IMG[2]], 'Left' : [IMG[1], IMG[6], IMG[7], IMG[3]], 'Death' : IMG[8]}
