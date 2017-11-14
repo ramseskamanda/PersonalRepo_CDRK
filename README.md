@@ -10,5 +10,6 @@ Just a repository to store my code so I don't lose it
 [Random Files: ](https://github.com/RKasinCDRK/PersonalRepo/tree/master/Miscellaneous)
   - [Java](https://github.com/RKasinCDRK/PersonalRepo/tree/master/Miscellaneous/Java)
   - [CS1 Assignments](https://github.com/RKasinCDRK/PersonalRepo/tree/master/Miscellaneous/Java/CS1)
+  - [CS2 Assignments](https://github.com/RKasinCDRK/PersonalRepo/tree/master/Miscellaneous/Java/CS2)
  
  Feel free to suggest new projects, modify or upgrade currently existing projects, or use snippets freely.
