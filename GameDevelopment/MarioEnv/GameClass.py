@@ -30,7 +30,7 @@ class MarioEnv:
         self.bowser = Bowser()
         self.ALL_SPRITES = pygame.sprite.Group(self._sprites_array.ENTITIES, self.mario, self.bowser, self.bowser.fireballs)
         self.camera = Camera(complex_camera, BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
-        self._running = self.mario.alive
+        self._running = True
 
     def on_event(self, keys):
         for event in pygame.event.get():
