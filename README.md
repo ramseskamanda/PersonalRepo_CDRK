@@ -12,5 +12,6 @@ Just a repository to store my code so I don't lose it
   - [CS1 Assignments](https://github.com/RKasinCDRK/PersonalRepo/tree/master/Miscellaneous/Java/CS1)
   - [CS2 Assignments](https://github.com/RKasinCDRK/PersonalRepo/tree/master/Miscellaneous/Java/CS2)
   - [Data Structures and Algorithms](https://github.com/RKasinCDRK/PersonalRepo_CDRK/tree/master/Miscellaneous/DataStructures)
- 
+  - [Software Engineering](https://github.com/RKasinCDRK/PersonalRepo_CDRK/tree/master/Miscellaneous/SoftwareEngineering)
+
  Feel free to suggest new projects, modify or upgrade currently existing projects, or use snippets freely.
